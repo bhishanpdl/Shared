@@ -99,10 +99,11 @@ Question:
 I am fitting a lot of HST images and the galaxies looks different. Shall I try
 fitting devauc + expdisk for all of them and wait and see how many gives the
 positive results.
-What I need is bulge and disk comonent of all the input galaxies.
+What I need is bulge and disk component of all the input galaxies.
 How can I do that for all the galaxies.
 
 I have also attached the python code in github to run galfit on different
 galaxies.
 
 The link is following:
+https://github.com/bhishanpdl/Shared_to_public/tree/master/galfit_question2
