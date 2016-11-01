@@ -1,0 +1,108 @@
+# Author    : Bhishan Poudel
+# Date      : Nov 1, 2016 Tue
+
+Dear Galfit Users,
+
+I am trying a fit a HST galaxy image. I tried a lot of times and failed each
+time. The error log says if the error is repeated a lot of times, emamil to
+Chien Peng, however, I thought it would be better to post the question here.
+
+Here is the sim.feedme file:
+
+# IMAGE and GALFIT CONTROL PARAMETERS
+A) f606w_gal37.fits # Input data image (FITS file)
+B) imgblock.fits       # Output data image block
+C) none                # Sigma image name (made from data if blank or "none")
+D) f606w_psf.fits # Input PSF image and (optional) diffusion kernel
+E) 2                   # PSF fine sampling factor relative to data
+F) none                # Bad pixel mask (FITS image or ASCII coord list)
+G) none                # File with parameter constraints (ASCII file)
+H) 0 601 0 601         # Image region to fit (xmin xmax ymin ymax)
+I) 601    601          # Size of the convolution box (x y)
+J) 30                  # Magnitude photometric zeropoint
+K) 0.03  0.03          # Plate scale (dx dy)    [arcsec per pixel]
+O) regular             # Display type (regular, curses, both)
+P) 0                   # Choose: 0=optimize, 1=model, 2=imgblock, 3=subcomps
+
+# deVaucouleur function
+# gives the bulge
+0) devauc             # Object type
+1) 300.0 300.0 1 1    # position x, y        [pixel]
+3) 23.873 1           # total magnitude
+4) 14.939 1           #     R_e              [Pixels]
+9) 0.5        1       # axis ratio (b/a)
+10) 107.       1      # position angle (PA)  [Degrees: Up=0, Left=90]
+Z) 0                  #  Skip this model in output image?  (yes=1, no=0)
+
+
+## Exponential function
+## gives disk part
+#0) expdisk            # Object type
+#1) 301.  301.  1 1    # position x, y        [pixel]
+#3) 23.873 1           # total magnitude
+#4) 14.939 1           #     Rs               [Pixels]
+#9) 0.5        1       # axis ratio (b/a)
+#10) 25         1      # position angle (PA)  [Degrees: Up=0, Left=90]
+#Z) 0                  #  Skip this model in output image?  (yes=1, no=0)
+
+## Edge-on disk function
+# Fit devauc and edgedisk if devauc+expdisk fails.
+0) edgedisk           # Object type
+1) 301.  301  1 1     # position x, y        [pixel]
+3) 23.841 0           # central surface brightness  [mag/arcsec^2]
+4) 17.847 0           # disk scale-height    [Pixels]
+5) 20.5       1       # disk scale-length    [Pixels]
+10) 25         1      # position angle (PA)  [Degrees: Up=0, Left=90]
+Z) 0                  #  Skip this model in output image?  (yes=1, no=0)
+
+
+QUESTION 1:
+===========
+While fitting devauc profile, I see the parameters total_magnitude and R_e.
+From ds9 header I see that:
+MAG     =  23.873
+RADIUS  =  4.939
+
+Should I fix these two parameters?
+#3) 23.873 0 # total magnitude
+#4) 4.939 0  # Rs               [Pixels]
+
+One interesting thing is when I open the image in ds9 and look it,
+it has y-axis expansion about 9 pixels. Now should I choose R_e >~ 9 pixels and
+keep it varialble or I can just keep it fixed to 4.939.
+
+I tried to fix the values and got the numerical error.
+I also changed the radius and magnitudes and keep them variable, again failed.
+
+
+QUESTION 2:
+============
+The galaxy does not look circular, and seems to be 145 degree rotated.
+May be I am fitting wrong profiles. I am fitting devauc and expdisk with above
+parameter. It failed and I tried devauc + edgedisk. That also failed.
+
+
+Error log:
+==========
+Iteration : 5     Chi2nu: 1.832e+00     dChi2/Chi2: -5.00e+00   alamda: 1e-01
+ devauc    : (  300.02,   298.68)   25.17     68.90   [4.00]   0.58    73.86
+ edgedisk  : (  299.56,   298.55)  [23.84]   [17.85]   4.22     ---    30.00
+COUNTDOWN = 95
+Numerical Recipes run-time error...
+gaussj: Singular Matrix-1
+...now exiting to system...
+
+The error log does not have *something* but again it failed.
+
+Question:
+==========
+I am fitting a lot of HST images and the galaxies looks different. Shall I try
+fitting devauc + expdisk for all of them and wait and see how many gives the
+positive results.
+What I need is bulge and disk comonent of all the input galaxies.
+How can I do that for all the galaxies.
+
+I have also attached the python code in github to run galfit on different
+galaxies.
+
+The link is following:
