@@ -8,7 +8,7 @@
 
 
 # IMAGE and GALFIT CONTROL PARAMETERS
-A) /Users/poudel/jedisim/simdatabase/colors/f606w_gal37.fits # Input data image (FITS file)
+A) f606w_gal37.fits # Input data image (FITS file)
 B) imgblock.fits       # Output data image block
 C) none                # Sigma image name (made from data if blank or "none")
 D) f606w_psf.fits # Input PSF image and (optional) diffusion kernel
