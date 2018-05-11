@@ -1,0 +1,33 @@
+# galfit sim.feedme && galfit -o3 galfit.01 && rm -r galfit.01
+# ds9 -multiframe imgblock.fits &
+# imcopy imgblock.fits[2] galfit_outputs/f606_model0.fits
+# imcopy imgblock.fits[3] galfit_outputs/f606_residual0.fits
+# Items 1-10 are the initial rough guesses at the object parameters.
+# The 2nd column in Items 3-10 are initial guesses for the parameter and the
+# 3rd column is where one can hold the parameters fixed (0) or allow vary (1).
+
+
+# IMAGE and GALFIT CONTROL PARAMETERS
+A) f606w_gal37.fits # Input data image (FITS file)
+B) imgblock.fits       # Output data image block
+C) none                # Sigma image name (made from data if blank or "none")
+D) f606w_psf.fits # Input PSF image and (optional) diffusion kernel
+E) 2                   # PSF fine sampling factor relative to data
+F) none                # Bad pixel mask (FITS image or ASCII coord list)
+G) none                # File with parameter constraints (ASCII file)
+H) 200 401 200 401         # Image region to fit (xmin xmax ymin ymax)
+I) 101    101            # Size of the convolution box (x y)
+J) 30                  # Magnitude photometric zeropoint
+K) 0.03  0.03          # Plate scale (dx dy)    [arcsec per pixel]
+O) regular             # Display type (regular, curses, both)
+P) 0                   # Choose: 0=optimize, 1=model, 2=imgblock, 3=subcomps
+
+## Exponential function
+## gives disk part
+0) expdisk            # Object type
+1) 301.  301.  1 1    # position x, y        [pixel]
+3) 23.873 1 # total magnitude
+4) 4.939 1 #     Rs               [Pixels]
+9) 0.5        1       # axis ratio (b/a)
+10) 25         1      # position angle (PA)  [Degrees: Up=0, Left=90]
+Z) 0                  #  Skip this model in output image?  (yes=1, no=0)
