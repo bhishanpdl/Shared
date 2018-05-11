@@ -1,3 +1,58 @@
+##==============================================
+## Compressed files
+##==============================================
+*.7z
+*.dmg
+*.iso
+*.jar
+*.rar
+*.tar
+
+
+
+
+
+##==============================================
+## Executables
+##==============================================
+*.exe
+*.out
+*.app
+*.I*86
+*.x86_64
+*.hex
+
+
+
+##==============================================
+## Debug files
+##==============================================
+*.dSYM/
+*.su
+
+
+##==============================================
+## OS generated files
+##==============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+?Icon?
+
+
+##==============================================
+## Python caches
+##==============================================
+__pycache__/
+*/__pycache__
+*.pyc
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -20,6 +75,7 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -42,7 +98,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
-*,cover
+*.cover
 .hypothesis/
 
 # Translations
@@ -66,7 +122,7 @@ docs/_build/
 # PyBuilder
 target/
 
-# IPython Notebook
+# Jupyter Notebook
 .ipynb_checkpoints
 
 # pyenv
@@ -75,15 +131,27 @@ target/
 # celery beat schedule file
 celerybeat-schedule
 
+# SageMath parsed files
+*.sage.py
+
 # dotenv
 .env
 
 # virtualenv
+.venv
 venv/
 ENV/
 
 # Spyder project settings
 .spyderproject
+.spyproject
 
 # Rope project settings
 .ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+ 
